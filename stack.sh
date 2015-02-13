@@ -215,9 +215,9 @@ sudo grep -q "^#includedir.*/etc/sudoers.d" /etc/sudoers ||
 # Set up DevStack sudoers
 TEMPFILE=`mktemp`
 echo "$STACK_USER ALL=(root) NOPASSWD:ALL" >$TEMPFILE
-# Some binaries might be under ``/sbin`` or ``/usr/sbin``, so make sure sudo will
-# see them by forcing ``PATH``
-echo "Defaults:$STACK_USER secure_path=/sbin:/usr/sbin:/usr/bin:/bin:/usr/local/sbin:/usr/local/bin" >> $TEMPFILE
+# Some binaries might be under /sbin or /usr/sbin, so make sure sudo will
+# see them by forcing PATH
+echo "Defaults:$STACK_USER secure_path=/opt/rh/mariadb55/root/usr/bin:/opt/rh/python27/root/usr/bin:/sbin:/usr/sbin:/usr/bin:/bin:/usr/local/sbin:/usr/local/bin" >> $TEMPFILE
 echo "Defaults:$STACK_USER !requiretty" >> $TEMPFILE
 chmod 0440 $TEMPFILE
 sudo chown root:root $TEMPFILE

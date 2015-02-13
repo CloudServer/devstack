@@ -38,18 +38,7 @@ function get_pip_command {
 # Get the path to the direcotry where python executables are installed.
 # get_python_exec_prefix
 function get_python_exec_prefix {
-    local xtrace=$(set +o | grep xtrace)
-    set +o xtrace
-    if [[ -z "$os_PACKAGE" ]]; then
-        GetOSVersion
-    fi
-    $xtrace
-
-    if is_fedora || is_suse; then
-        echo "/usr/bin"
-    else
-        echo "/usr/local/bin"
-    fi
+    echo "/opt/rh/python27/root/usr/bin"
 }
 
 # Wrapper for ``pip install`` that only installs versions of libraries
