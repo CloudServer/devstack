@@ -54,7 +54,9 @@ if ! isset ENABLED_SERVICES ; then
     ENABLED_SERVICES+=,g-api,g-reg
     # Cinder
     ENABLED_SERVICES+=,c-sch,c-api,c-vol
-    # Dashboard
+    # heat
+    #ENABLED_SERVICES+=,h-eng,h-api,h-api-cfn,h-api-cw
+    # dashboard
     ENABLED_SERVICES+=,horizon
     # Additional services
     ENABLED_SERVICES+=,rabbit,tempest,mysql,dstat
