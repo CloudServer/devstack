@@ -46,13 +46,9 @@ REGION_NAME=${REGION_NAME:-RegionOne}
 
 # This allows us to pass ``ENABLED_SERVICES``
 if ! isset ENABLED_SERVICES ; then
-    # Keystone - nothing works without keystone
-    ENABLED_SERVICES=key
-    # Nova - services to support libvirt based openstack clouds
-    ENABLED_SERVICES+=,n-api,n-cpu,n-net,n-cond,n-sch,n-novnc
-    # Glance services needed for Nova
-    ENABLED_SERVICES+=,g-api,g-reg
-    # Cinder
+    # core compute (glance / keystone / nova (+ nova-network))
+    ENABLED_SERVICES=g-api,g-reg,key,n-api,n-crt,n-obj,n-cpu,n-cond,n-sch,n-xvnc,n-cauth,n-novnc
+    # cinder
     ENABLED_SERVICES+=,c-sch,c-api,c-vol
     # heat
     #ENABLED_SERVICES+=,h-eng,h-api,h-api-cfn,h-api-cw
@@ -60,6 +56,8 @@ if ! isset ENABLED_SERVICES ; then
     ENABLED_SERVICES+=,horizon
     # additional services
     ENABLED_SERVICES+=,qpid,tempest,mysql
+    #NEUTRON
+    ENABLED_SERVICES+=,neutron,q-svc,q-agt,q-dhcp,q-l3,q-meta
 fi
 
 # SQLAlchemy supports multiple database drivers for each database server
