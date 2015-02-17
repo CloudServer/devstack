@@ -7,8 +7,8 @@ RC_DIR=$(cd $(dirname "${BASH_SOURCE:-$0}") && pwd)
 
 # Source required DevStack functions and globals
 source $RC_DIR/functions
+source $RC_DIR/parallels
 
-# Destination path for installation
 DEST=/vz/stack
 
 # Destination for working data
