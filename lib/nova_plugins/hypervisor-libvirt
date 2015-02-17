@@ -46,8 +46,8 @@ function configure_nova_hypervisor {
     iniset $NOVA_CONF libvirt use_usb_tablet "False"
     iniset $NOVA_CONF libvirt live_migration_uri "qemu+ssh://$STACK_USER@%s/system"
     iniset $NOVA_CONF DEFAULT default_ephemeral_format "ext4"
-    iniset $NOVA_CONF DEFAULT compute_driver "libvirt.LibvirtDriver"
-    LIBVIRT_FIREWALL_DRIVER=${LIBVIRT_FIREWALL_DRIVER:-"nova.virt.libvirt.firewall.IptablesFirewallDriver"}
+    iniset $NOVA_CONF DEFAULT compute_driver "nova.virt.libvirt.LibvirtDriver"
+    LIBVIRT_FIREWALL_DRIVER=${LIBVIRT_FIREWALL_DRIVER:-"nova.virt.libvirt.firewall.NoopFirewallDriver"}
     iniset $NOVA_CONF DEFAULT firewall_driver "$LIBVIRT_FIREWALL_DRIVER"
     # Power architecture currently does not support graphical consoles.
     if is_arch "ppc64"; then
@@ -70,6 +70,11 @@ function configure_nova_hypervisor {
     if [[ "$LIBVIRT_TYPE" = "parallels" ]]; then
         iniset $NOVA_CONF libvirt connection_uri "parallels+unix:///system"
         iniset $NOVA_CONF libvirt images_type "ploop"
+        iniset $NOVA_CONF DEFAULT verbose  "true"
+        iniset $NOVA_CONF DEFAULT log_dir  "/var/log/nova"
+        iniset $NOVA_CONF DEFAULT force_raw_images  "false"
+        iniset $NOVA_CONF DEFAULT vncserver_proxyclient_address  $HOST_IP
+        iniset $NOVA_CONF DEFAULT vncserver_listen $HOST_IP
     fi
 }
 
