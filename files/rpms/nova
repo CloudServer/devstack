@@ -37,6 +37,7 @@ python-routes
 python-sqlalchemy
 python-suds
 python-tempita
+mysql-devel
 rabbitmq-server # NOPRIME
 qpid-cpp-server # NOPRIME
 sqlite
