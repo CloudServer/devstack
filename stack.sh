@@ -722,6 +722,10 @@ run_phase stack pre-install
 
 install_rpc_backend
 
+pip_install mysqlclient
+pip_install argparse
+
+
 if is_service_enabled $DATABASE_BACKENDS; then
     install_database
     install_database_python
