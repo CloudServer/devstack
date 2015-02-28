@@ -1,6 +1,5 @@
 Django
 httpd # NOPRIME
-mod_wsgi  # NOPRIME
 pylint
 python-anyjson
 python-BeautifulSoup

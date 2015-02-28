@@ -53,7 +53,7 @@ function install_apache_wsgi {
         sudo a2enmod wsgi
     elif is_fedora; then
         sudo rm -f /etc/httpd/conf.d/000-*
-        install_package httpd mod_wsgi
+        install_package httpd
     elif is_suse; then
         install_package apache2 apache2-mod_wsgi
         # WSGI isn't enabled by default, enable it
