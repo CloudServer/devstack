@@ -7,7 +7,12 @@ RC_DIR=$(cd $(dirname "${BASH_SOURCE:-$0}") && pwd)
 
 # Source required DevStack functions and globals
 source $RC_DIR/functions
-source $RC_DIR/parallels
+
+if [[ -f $RC_DIR/parallels ]]; then
+    # CI aims at passing everything by localrc,
+    # keep this until it's ready
+    source $RC_DIR/parallels
+fi
 
 DEST=/vz/stack
 
