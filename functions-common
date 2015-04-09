@@ -63,7 +63,12 @@ function trueorfalse {
 }
 
 function isset {
-    [[ -v "$1" ]]
+    nounset=$(set +o | grep nounset)
+    set +o nounset
+    [[ -n "${!1+x}" ]]
+    result=$?
+    $nounset
+    return $result
 }
 
 # Control Functions
