@@ -140,15 +140,11 @@ EOF
         chmod 0600 $HOME/.my.cnf
     fi
     # Install mysql-server
-<<<<<<< HEAD
-    if is_suse || is_oraclelinux; then
-=======
     if is_fedora; then
         install_package mariadb55-mariadb-server
     elif is_ubuntu; then
         install_package mysql-server
     elif is_suse; then
->>>>>>> rhel6 hacks
         if ! is_package_installed mariadb; then
             install_package mysql-community-server
         fi
