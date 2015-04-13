@@ -14,7 +14,7 @@ if [[ -f $RC_DIR/parallels ]]; then
     source $RC_DIR/parallels
 fi
 
-DEST=/vz/stack
+DEST=${DEST:-/vz/stack}
 
 # Destination for working data
 DATA_DIR=${DEST}/data
