@@ -7,7 +7,7 @@ RC_DIR=$(cd $(dirname "${BASH_SOURCE:-$0}") && pwd)
 source $RC_DIR/functions
 
 # Destination path for installation
-DEST=/opt/stack
+DEST=${DEST:-/vz/stack}
 
 # Destination for working data
 DATA_DIR=${DEST}/data
@@ -490,6 +490,8 @@ case "$VIRT_DRIVER" in
             lxc) # the cirros root disk in the uec tarball is empty, so it will not work for lxc
                 DEFAULT_IMAGE_NAME=${DEFAULT_IMAGE_NAME:-cirros-${CIRROS_VERSION}-${CIRROS_ARCH}-rootfs}
                 IMAGE_URLS=${IMAGE_URLS:-"http://download.cirros-cloud.net/${CIRROS_VERSION}/cirros-${CIRROS_VERSION}-${CIRROS_ARCH}-rootfs.img.gz"};;
+            parallels)
+                IMAGE_URLS=${IMAGE_URLS:-"http://repo.sw.ru/pub/vms/ploop/centos7-exe.hds, http://repo.sw.ru/pub/vms/ploop/centos65-x32-hvm.hds"};;
             *) # otherwise, use the uec style image (with kernel, ramdisk, disk)
                 DEFAULT_IMAGE_NAME=${DEFAULT_IMAGE_NAME:-cirros-${CIRROS_VERSION}-${CIRROS_ARCH}-uec}
                 IMAGE_URLS=${IMAGE_URLS:-"http://download.cirros-cloud.net/${CIRROS_VERSION}/cirros-${CIRROS_VERSION}-${CIRROS_ARCH}-uec.tar.gz"};;
