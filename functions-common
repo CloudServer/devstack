@@ -481,7 +481,8 @@ function GetDistro {
         fi
     elif [[ "$os_VENDOR" =~ (Red Hat) || \
         "$os_VENDOR" =~ (CentOS) || \
-        "$os_VENDOR" =~ (OracleServer) ]]; then
+        "$os_VENDOR" =~ (OracleServer) || \
+        "$os_VENDOR" =~ (CloudLinuxServer) ]]; then
         # Drop the . release as we assume it's compatible
         DISTRO="rhel${os_RELEASE::1}"
     elif [[ "$os_VENDOR" =~ (XenServer) ]]; then
